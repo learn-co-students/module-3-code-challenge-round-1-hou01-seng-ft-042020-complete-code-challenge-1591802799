@@ -3,25 +3,121 @@
     {
       "id": 1,
       "title": "Woofing those bugs away",
-      "likes": 0,
+      "likes": 15,
       "image": "./assets/coder-dog.png"
     }
   ],
   "comments": [
     {
-      "id": 1,
-      "imageId": 1,
-      "content": "What a cute dog!"
+      "content": "So cute!",
+      "id": 4
     },
     {
-      "id": 2,
-      "imageId": 1,
-      "content": "He's got a nose for bugs!"
+      "content": "So cute!",
+      "id": 5
     },
     {
-      "id": 3,
+      "content": "So cute!",
+      "imageId": "1",
+      "id": 6
+    },
+    {
+      "content": "So cute!",
+      "imageId": "1",
+      "id": 7
+    },
+    {
+      "content": "So cute!",
+      "imageId": "1",
+      "id": 8
+    },
+    {
+      "content": "So cute!",
+      "imageId": "1",
+      "id": 9
+    },
+    {
+      "content": "So cute!",
+      "id": 10
+    },
+    {
+      "content": "So cute!!!",
+      "id": 11
+    },
+    {
+      "content": "So cute!",
+      "imageId": "1",
+      "id": 12
+    },
+    {
+      "content": "So cute!",
       "imageId": 1,
-      "content": "Woof!"
+      "id": 13
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 15
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 16
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 20
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 21
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 22
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 23
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 24
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 25
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 27
+    },
+    {
+      "content": "",
+      "imageId": 1,
+      "id": 28
+    },
+    {
+      "content": "Sweet Doggy!, Love him!",
+      "imageId": 1,
+      "id": 29
+    },
+    {
+      "content": "Testing Comments",
+      "imageId": 1,
+      "id": 30
+    },
+    {
+      "content": "Sweet Doggy!",
+      "imageId": 1,
+      "id": 31
     }
   ]
 }
