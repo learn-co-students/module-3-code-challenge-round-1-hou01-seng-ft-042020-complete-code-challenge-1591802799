@@ -3,12 +3,12 @@ const url = 'http://localhost:3000/images/1'
 fetch(url)
   .then(res => res.json())
   .then(instaObj => {
-    displayImage(instaObj);
+    displayContent(instaObj);
     handleLikes(instaObj.likes);
     handleComments(instaObj.comments);
   })
 
-const displayImage = (instaObj) => {
+const displayContent = (instaObj) => {
   console.log(instaObj)
 
   const title = document.querySelector('.title');
