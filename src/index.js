@@ -1,8 +1,14 @@
 // write your code here
 const url= 'http://localhost:3000/images/1'
 
-fetch (url)
-.then(resp=>resp.json())
+function fetching(){
+    return fetch(url, options={})
+    .then(resp => resp.json())
+}
+
+// fetch (url)
+// .then(resp=>resp.json())
+fetching()
 .then(dog => { 
     showDog(dog)
 })
@@ -19,6 +25,12 @@ function showDog(dog){
     likes.textContent=dog.likes 
 
     dog.comments.forEach(comment=>{
+        showComments(comment)
+    })
+}
+
+function showComments(comment){
+    const commentsUl=document.querySelector(".comments")
         const li=document.createElement("li")
         li.textContent=comment.content 
         li.dataset.dataId=comment.id
@@ -35,9 +47,7 @@ function showDog(dog){
                 li.remove()
             })
         })
-    })
 }
-
 // Click on the heart icon to 
 // increase image likes, and still see them when I reload the page
 
@@ -62,6 +72,7 @@ likeBtn.addEventListener("click", ()=>{
         likesSpan.textContent=likes 
     })
 })
+
 
 // Add a comment (no persistance needed)
 
@@ -99,6 +110,7 @@ commentForm.addEventListener("submit", (e)=>{
 
 const downVoteBtn=document.createElement("button")
 downVoteBtn.textContent="Unlike Dog"
+
 const likesSection=document.querySelector(".likes-section")
 likesSection.append(downVoteBtn)
 
