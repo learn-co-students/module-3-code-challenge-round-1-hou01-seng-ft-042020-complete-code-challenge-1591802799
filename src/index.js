@@ -21,7 +21,20 @@ function showDog(dog){
     dog.comments.forEach(comment=>{
         const li=document.createElement("li")
         li.textContent=comment.content 
+        li.dataset.dataId=comment.id
+        
         commentsUl.append(li)
+        li.addEventListener("click", (e)=>{
+            const liId=e.target.dataset.dataId 
+            const options={
+                method:"DELETE"
+            };
+            fetch( `http://localhost:3000/comments/${liId}`, options)
+            .then(resp=>resp.json)
+            .then(comment=>{
+                li.remove()
+            })
+        })
     })
 }
 
@@ -32,7 +45,7 @@ const likeBtn=document.querySelector(".like-button")
 likeBtn.addEventListener("click", ()=>{
     const likesSpan= document.querySelector(".likes")
     let likes=parseInt(likesSpan.innerHTML, 10)
-    options={
+    const options={
         method: 'PATCH',
         headers: {
             "Content-Type": "application/json",
@@ -55,13 +68,15 @@ likeBtn.addEventListener("click", ()=>{
 
 const commentForm=document.querySelector(".comment-form")
 
-commentForm.addEventListener("submit", ()=>{
+commentForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+
     const commentInput=document.querySelector(".comment-input").value 
     const commentUl=document.querySelector(".comments")
     const commentLi=document.createElement("li")
     
     
-    options={
+    const options={
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -79,4 +94,34 @@ commentForm.addEventListener("submit", ()=>{
         commentLi.textContent=commentInput 
         commentUl.append(commentLi)
     })
+    commentForm.reset();
 })
+
+const downVoteBtn=document.createElement("button")
+downVoteBtn.textContent="Down Vote Dog"
+commentForm.append(downVoteBtn)
+
+downVoteBtn.addEventListener("click", ()=>{
+    const likesSpan= document.querySelector(".likes")
+    let likes=parseInt(likesSpan.innerHTML, 10)
+    const options={
+        method: 'PATCH',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        }, 
+        body: JSON.stringify({
+            "likes": --likes 
+        })
+    }
+
+    fetch(url, options)
+    .then(resp => resp.json())
+    .then(dog =>{
+        likesSpan.textContent=likes 
+    })
+})
+
+// Delete a comment
+// To persist this, you will have to make a DELETE request to the /comments/:id endpoint.
+
