@@ -98,8 +98,9 @@ commentForm.addEventListener("submit", (e)=>{
 })
 
 const downVoteBtn=document.createElement("button")
-downVoteBtn.textContent="Down Vote Dog"
-commentForm.append(downVoteBtn)
+downVoteBtn.textContent="Unlike Dog"
+const likesSection=document.querySelector(".likes-section")
+likesSection.append(downVoteBtn)
 
 downVoteBtn.addEventListener("click", ()=>{
     const likesSpan= document.querySelector(".likes")
@@ -121,7 +122,4 @@ downVoteBtn.addEventListener("click", ()=>{
         likesSpan.textContent=likes 
     })
 })
-
-// Delete a comment
-// To persist this, you will have to make a DELETE request to the /comments/:id endpoint.
 
