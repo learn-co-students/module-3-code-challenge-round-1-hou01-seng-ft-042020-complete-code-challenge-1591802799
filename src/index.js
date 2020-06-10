@@ -49,11 +49,22 @@ const handleComments = (comments) => {
   
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    comments.push({
-      content: input.value
-    });
-    displayComments(comments)    
-    form.reset();
+    fetch('http://localhost:3000/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        content: input.value,
+        imageId: 1
+      })
+    })
+    .then(res => res.json())
+    .then(commentsObj => {
+      comments.push(commentsObj)
+      displayComments(comments)    
+      form.reset();
+    })
   });
 }
 
@@ -63,7 +74,24 @@ const displayComments = (comments) => {
 
   for (const commentObj of comments) {
     const li = document.createElement('li');
+    li.dataset.commentId = commentObj.id;
     li.textContent = commentObj.content;
+    handleDeleteCommentsListener(li)
     commentsUl.append(li);
   } 
+}
+
+const handleDeleteCommentsListener = (commentEle) => {
+  commentEle.addEventListener('click', () => {
+    console.log(commentEle.dataset.commentId)
+    fetch(`http://localhost:3000/comments/${commentEle.dataset.commentId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(() => {
+      commentEle.remove();
+    })
+  })
 }
