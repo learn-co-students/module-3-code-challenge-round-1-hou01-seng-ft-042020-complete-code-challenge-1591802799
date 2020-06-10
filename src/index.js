@@ -1,8 +1,7 @@
 // write your code here
 const gramUrl = "http://localhost:3000"
 const commentsUl = document.querySelector(".comments")
-const likeSpan = document.querySelector(".likes")
-const form = document.querySelector(".comment-form")
+
 
 // Dynamically fetches single image from server
 function getSingleImage(id) {
@@ -22,31 +21,35 @@ function renderImage(pic) {
     const img = document.querySelector(".image")
     img.src = pic.image
 
+    const likeSpan = document.querySelector(".likes")
     likeSpan.innerText = `${pic.likes} likes`
 
     const likeBtn = document.querySelector(".like-button")
     likeBtn.dataset.id = pic.id
     likeBtn.addEventListener("click", () => {
         addLike(pic.id, ++pic.likes)
+        likeSpan.innerText = `${pic.likes} likes`
     })
 
     const unLikeBtn = document.createElement("button")
     unLikeBtn.className = "like-button"
-    unLikeBtn.innerText = ":("
+    unLikeBtn.innerText = "👎"
     likesSection.append(unLikeBtn)
 
     unLikeBtn.addEventListener("click", () => {
         unLike(pic.id, --pic.likes)
+        likeSpan.innerText = `${pic.likes} likes`
     })
 
-
+    const form = document.querySelector(".comment-form")
     form.addEventListener("submit", e => {
         e.preventDefault()
         addComment(pic.id, e.target[0].value)
+        e.target.reset()
     })
 
     commentsUl.innerHTML = ""
-    pic.comments.forEach(comment => renderComments(comment))
+    pic.comments.forEach(renderComments)
 }
 
 // renders comments on page
@@ -75,7 +78,7 @@ function addLike(imageId, num) {
     };
     fetch(gramUrl + `/images/${imageId}`, options)
         .then(res => res.json())
-        .then(likeSpan.innerText = `${num} likes`)
+        .then()
 }
 
 // removes likes from server
@@ -92,7 +95,7 @@ function unLike(imageId, num) {
     };
     fetch(gramUrl + `/images/${imageId}`, options)
         .then(res => res.json())
-        .then(likeSpan.innerText = `${num} likes`)
+        .then()
 }
 
 // add comment to server
@@ -110,10 +113,7 @@ function addComment(picId, comment) {
     };
     fetch(gramUrl + `/comments`, options)
         .then(res => res.json())
-        .then(comment => {
-            renderComments(comment)
-            form.reset()
-        })
+        .then(renderComments)
 }
 
 // delete comment from server
