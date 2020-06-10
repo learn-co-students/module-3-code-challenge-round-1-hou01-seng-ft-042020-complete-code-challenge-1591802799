@@ -37,13 +37,14 @@ function showPuppy (puppyObj){
     let puppyLikes = document.querySelector('.likes-section');
     puppyLikes.textContent = `${puppyObj.likes} likes`;
 
-    puppyContainer.append(puppyTitle, puppyImage, puppyLikes);
+   
 
     let likeBtn = document.getElementsByClassName('like-button');
-    
+    puppyContainer.append(puppyTitle, puppyImage, puppyLikes);
+
     likeBtn.addEventListener('click', e => {
        let options = {
-           method: 'PATCH',
+           method: 'PATCH/images/1s',
            headers: {
                "content-type": "application/json",
                "Accept": "application/json"
@@ -52,12 +53,10 @@ function showPuppy (puppyObj){
                likes: ++ puppyObj.likes
            })
        }
-       fetch(`${url}/1`)
+       fetch(url)
         .then(res => res.json())
         .then( puppy => {puppyLikes.textContent = `${puppyObj.likes} likes`})
     });
-    
-    //puppyContainer.append(puppyTitle, puppyImage, puppyLikes);
 }
 
 
