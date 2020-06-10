@@ -4,32 +4,6 @@ const commentsUl = document.querySelector(".comments")
 const likeSpan = document.querySelector(".likes")
 const form = document.querySelector(".comment-form")
 
-// const imgContainer = document.querySelector(".image-container")
-
-// {
-//     "id": 1,
-//     "title": "Woofing those bugs away",
-//     "likes": 0,
-//     "image": "./assets/coder-dog.png",
-//     "comments": [
-//     {
-//     "id": 1,
-//     "imageId": 1,
-//     "content": "What a cute dog!"
-//     },
-//     {
-//     "id": 2,
-//     "imageId": 1,
-//     "content": "He's got a nose for bugs!"
-//     },
-//     {
-//     "id": 3,
-//     "imageId": 1,
-//     "content": "Woof!"
-//     }
-//     ]
-//     }
-
 // Dynamically fetches single image from server
 function getSingleImage(id) {
     fetch(gramUrl + `/images/${id}`)
@@ -71,7 +45,6 @@ function renderImage(pic) {
         addComment(pic.id, e.target[0].value)
     })
 
-    // commentsUl.dataset.id = pic.id
     commentsUl.innerHTML = ""
     pic.comments.forEach(comment => renderComments(comment))
 }
