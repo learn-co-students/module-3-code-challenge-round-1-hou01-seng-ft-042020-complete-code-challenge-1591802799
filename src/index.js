@@ -4,11 +4,11 @@ const commentsUl = document.querySelector(".comments")
 
 
 // Dynamically fetches single image from server
-function getSingleImage(id) {
-    fetch(gramUrl + `/images/${id}`)
+
+    fetch(gramUrl + `/images/1`)
         .then(res => res.json())
         .then(renderImage)
-}   
+
 
 // renders image on page
 function renderImage(pic) {
@@ -25,9 +25,8 @@ function renderImage(pic) {
     likeSpan.innerText = `${pic.likes} likes`
 
     const likeBtn = document.querySelector(".like-button")
-    likeBtn.dataset.id = pic.id
     likeBtn.addEventListener("click", () => {
-        addLike(pic.id, ++pic.likes)
+        addLike(++pic.likes)
         likeSpan.innerText = `${pic.likes} likes`
     })
 
@@ -37,7 +36,7 @@ function renderImage(pic) {
     likesSection.append(unLikeBtn)
 
     unLikeBtn.addEventListener("click", () => {
-        unLike(pic.id, --pic.likes)
+        unLike(--pic.likes)
         likeSpan.innerText = `${pic.likes} likes`
     })
 
@@ -65,7 +64,7 @@ function renderComments(comment) {
 }
 
 // add likes to the server
-function addLike(imageId, num) {
+function addLike(num) {
     const options = {
         method: "PATCH",
         headers: {
@@ -76,13 +75,13 @@ function addLike(imageId, num) {
             likes: num
         })
     };
-    fetch(gramUrl + `/images/${imageId}`, options)
+    fetch(gramUrl + `/images/1`, options)
         .then(res => res.json())
         .then()
 }
 
 // removes likes from server
-function unLike(imageId, num) {
+function unLike(num) {
     const options = {
         method: "PATCH",
         headers: {
@@ -93,7 +92,7 @@ function unLike(imageId, num) {
             likes: num
         })
     };
-    fetch(gramUrl + `/images/${imageId}`, options)
+    fetch(gramUrl + `/images/1`, options)
         .then(res => res.json())
         .then()
 }
@@ -125,6 +124,3 @@ function deleteComment(id) {
         .then(res => res.json())
         .then()
 }
-
-
-getSingleImage(1)
